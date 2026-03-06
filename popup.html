@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        body {
+            width: 350px;
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            transition: background 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .app-header {
+            padding: 16px 20px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .logo-img { width: 32px; height: 32px; border-radius: 6px; object-fit: contain; }
+        h1 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+
+        .mode-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+        .mode-toggle-wrapper:hover { border-color: var(--primary); }
+        .mode-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .stat-card {
+            background: var(--card);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .stat-value { display: block; font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 9px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+
+        .content-area { padding: 0 15px 20px 15px; }
+
+        .input-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+        }
+        label { display: block; font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 2px; }
+        input { width: 100%; border: none; background: transparent; color: var(--text-main); font-size: 0.9rem; padding: 4px 0; }
+        input:focus { outline: none; }
+
+        .time-picker-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 5px;
+        }
+        .time-unit-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        .time-unit-box input {
+            width: 40px;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .unit-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        .section-title { font-size: 11px; font-weight: 800; color: var(--text-muted); margin: 20px 0 10px 0; display: flex; justify-content: space-between; align-items: center; }
+
+        .mission-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .mission-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; display: block; }
+        .mission-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
+
+        .btn-group { display: flex; gap: 8px; }
+        .btn-sm { flex: 1; padding: 7px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; transition: 0.2s; }
+        .btn-resume { background: var(--success); color: white; }
+        .btn-abort { background: var(--bg); color: var(--danger); border: 1px solid var(--border); }
+        .btn-sm:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            background: var(--card);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 11px;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .btn-delete-hist {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 14px;
+            padding: 0 5px;
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+
+        .btn-delete-hist:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+<header class="app-header">
+    <div class="brand">
+        <img src="icon128.png" class="logo-img" alt="logo">
+        <h1>TabQuest</h1>
+    </div>
+    <div class="mode-toggle-wrapper" id="themeToggle">
+        <span class="mode-label" id="modeText">LIGHT</span>
+        <span style="font-size: 14px;">🌓</span>
+    </div>
+</header>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-value" id="activeCount">0</span>
+        <span class="stat-label">Active</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value" id="tabCount">0</span>
+        <span class="stat-label">Tabs Saved</span>
+    </div>
+</div>
+
+<div class="content-area">
+    <div class="input-box">
+        <label>MISSION NAME</label>
+        <input type="text" id="taskName" placeholder="What are you working on?">
+    </div>
+
+    <div class="input-box">
+        <label>SET DURATION</label>
+        <div class="time-picker-grid">
+            <div class="time-unit-box">
+                <input type="number" id="deadlineHours" min="0" value="0" placeholder="0">
+                <span class="unit-label">HRS</span>
+            </div>
+            <div class="time-unit-box">
+                <input type="number" id="deadlineMins" min="0" max="59" value="1" placeholder="1">
+                <span class="unit-label">MINS</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-primary" id="saveBtn">Launch Mission</button>
+
+    <div class="section-title">
+        <span>ACTIVE MISSIONS</span>
+        <input type="text" id="searchBox" placeholder="Filter..." style="width: 70px; border-bottom: 1px solid var(--border); font-size: 10px;">
+    </div>
+    <div id="taskList"></div>
+
+    <div class="section-title">
+        <span>COMPLETED HISTORY</span>
+        <button id="clearHistory" style="background:none; border:none; color:var(--danger); font-size:9px; cursor:pointer; font-weight:800;">CLEAR ALL</button>
+    </div>
+    <div id="historyList"></div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
