@@ -66,6 +66,73 @@
         .story-card h2 { font-size: 1.1rem; color: var(--accent); margin-top: 0; }
         .story-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; }
 
+        /* Download Section Styling */
+        .download-area {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 28px;
+            border: 1px dashed var(--primary);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, #4338ca 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px -5px var(--primary-glow);
+            margin-bottom: 25px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 35px -8px var(--primary-glow);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .badge { display: flex; align-items: center; gap: 6px; }
+
+        .install-box {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            display: inline-block;
+            max-width: 90%;
+        }
+
+        .install-text {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .install-text code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--accent);
+            font-family: monospace;
+        }
+
         /* How to Use - Detailed */
         .usage-guide {
             display: grid;
@@ -83,6 +150,51 @@
         .step-num { font-size: 0.8rem; font-weight: 800; color: var(--accent); display: block; margin-bottom: 10px; }
         .usage-step h4 { font-size: 0.9rem; margin: 0 0 8px 0; color: #fff; }
         .usage-step p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .feature-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .feature-icon { font-size: 2.2rem; }
+        .feature-item h3 { margin: 0; font-size: 0.95rem; color: #fff; }
+        .feature-item p { margin: 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Tech Stack Section */
+        .tech-section {
+            background: rgba(99, 102, 241, 0.05);
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            margin-bottom: 40px;
+        }
+        .tech-section h3 { margin-top: 0; color: var(--primary); font-size: 1rem; }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tech-tag {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
 
         /* Final Action Banner */
         .final-banner {
@@ -102,7 +214,7 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         @media (max-width: 850px) {
-            .story-grid, .usage-guide { grid-template-columns: 1fr; }
+            .story-grid, .usage-guide, .features-grid { grid-template-columns: 1fr; }
             .main-container { padding: 30px; }
             h1 { font-size: 2.2rem; }
         }
@@ -129,7 +241,29 @@
         </div>
     </div>
 
+    <span class="section-label">Deployment & Access</span>
+    <div class="download-area">
+        <h3 style="color: #fff; margin-bottom: 10px;">Download TabQuest v1.0</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
+            Get the production-ready build. Secure, lightweight, and built with Manifest V3.
+        </p>
 
+        <a href="TabQuest_v1.0.zip" class="download-btn" download>
+            <span>🚀</span> Download ZIP for Chrome
+        </a>
+
+        <div class="trust-badges">
+            <div class="badge">🛡️ No Data Collection</div>
+            <div class="badge">🔓 Developer Mode Ready</div>
+            <div class="badge">⚡ Manifest V3 Compliant</div>
+        </div>
+
+        <div class="install-box">
+            <p class="install-text">
+                To Install: Unzip file ➔ Go to <code>chrome://extensions</code> ➔ Enable "Developer mode" ➔ Click "Load unpacked" ➔ Select folder.
+            </p>
+        </div>
+    </div>
 
     <span class="section-label">Mission Protocol: How to Use</span>
     <div class="usage-guide">
@@ -152,6 +286,55 @@
             <span class="step-num">STEP 04</span>
             <h4>Resume</h4>
             <p>Click the notification alert to bring all tabs back.</p>
+        </div>
+    </div>
+
+    <span class="section-label">Core Features</span>
+    <div class="features-grid">
+        <div class="feature-item">
+            <span class="feature-icon">⏱️</span>
+            <h3>Temporal Control</h3>
+            <p>Set customizable focus timers and automatically manage your work sessions with precision.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">💾</span>
+            <h3>Smart Serialization</h3>
+            <p>Your tabs are instantly backed up in a mission-critical state for perfect recovery.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">🚀</span>
+            <h3>Instant Recovery</h3>
+            <p>Restore all tabs with a single click when your focus session ends.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">🎯</span>
+            <h3>Deep Work Mode</h3>
+            <p>Eliminate distractions by isolating your active workspace completely.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <h3>Session History</h3>
+            <p>Track and manage multiple missions with unique names and timelines.</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">🔔</span>
+            <h3>Smart Notifications</h3>
+            <p>Receive timely alerts when your focus session is complete and ready to resume.</p>
+        </div>
+    </div>
+
+    <span class="section-label">Technology Stack</span>
+    <div class="tech-section">
+        <h3>Built With Modern Web Technologies</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">TabQuest leverages cutting-edge browser APIs and performance-optimized JavaScript for a seamless experience.</p>
+        <div class="tech-tags">
+            <span class="tech-tag">Chrome Extension API</span>
+            <span class="tech-tag">WebStorage API</span>
+            <span class="tech-tag">Background Workers</span>
+            <span class="tech-tag">Native Notifications</span>
+            <span class="tech-tag">LocalStorage</span>
+            <span class="tech-tag">Vanilla JavaScript</span>
+            <span class="tech-tag">CSS3 Animations</span>
         </div>
     </div>
 
