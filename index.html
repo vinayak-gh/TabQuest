@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21HYGDQTEM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    <meta charset="UTF-8">
-    ... (the rest of your head content)
+      gtag('config', 'G-21HYGDQTEM');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TabQuest | The Evolution of Tab Management</title>
@@ -63,13 +69,11 @@
 
         .section-label { font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; text-align: center; }
 
-        /* Problem & Solution Cards */
         .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
         .story-card { background: rgba(255, 255, 255, 0.02); padding: 30px; border-radius: 24px; border: 1px solid var(--border); }
         .story-card h2 { font-size: 1.1rem; color: var(--accent); margin-top: 0; }
         .story-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; }
 
-        /* Download Section Styling */
         .download-area {
             text-align: center;
             margin-bottom: 50px;
@@ -136,7 +140,6 @@
             font-family: monospace;
         }
 
-        /* How to Use - Detailed */
         .usage-guide {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -154,7 +157,6 @@
         .usage-step h4 { font-size: 0.9rem; margin: 0 0 8px 0; color: #fff; }
         .usage-step p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
 
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -174,7 +176,6 @@
         .feature-item h3 { margin: 0; font-size: 0.95rem; color: #fff; }
         .feature-item p { margin: 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
-        /* Tech Stack Section */
         .tech-section {
             background: rgba(99, 102, 241, 0.05);
             padding: 25px;
@@ -199,7 +200,6 @@
             border: 1px solid rgba(99, 102, 241, 0.4);
         }
 
-        /* Final Action Banner */
         .final-banner {
             background: linear-gradient(90deg, var(--primary), #4338ca);
             padding: 24px;
@@ -251,7 +251,10 @@
             Get the production-ready build. Secure, lightweight, and built with Manifest V3.
         </p>
 
-        <a href="./TabQuest_v1.0.zip" class="download-btn" download>
+        <a href="./TabQuest_v1.0.zip" 
+           class="download-btn" 
+           download 
+           onclick="gtag('event', 'download_click', { 'event_category': 'engagement', 'event_label': 'TabQuest ZIP' });">
             <span>🚀</span> Download ZIP for Chrome
         </a>
 
